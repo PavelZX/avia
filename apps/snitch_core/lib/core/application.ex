@@ -12,7 +12,28 @@ defmodule Snitch.Application do
     {:ok, pid} =
       Supervisor.start_link(
         [
-          supervisor(Snitch.Repo, [])
+          supervisor(Snitch.Repo, []),
+          Snitch.Tools.ElasticsearchCluster,
+          worker(
+            Elasticsearch.Executable,
+            [
+              "Elasticsearch",
+              # assuming elasticsearch is in your vendor/ dir
+              "vendor/elasticsearch/bin/elasticsearch",
+              9200
+            ],
+            id: :elasticsearch
+          ),
+          worker(
+            Elasticsearch.Executable,
+            [
+              "Kibana",
+              # assuming kibana is in your vendor/ dir
+              "vendor/kibana/bin/kibana",
+              5601
+            ],
+            id: :kibana
+          )
         ],
         strategy: :one_for_one,
         name: Snitch.Supervisor

@@ -107,7 +107,10 @@ defmodule Snitch.Core.Mixfile do
       {:xml_builder, "~> 2.1", override: true},
 
       # ecto_enum
-      {:ecto_enum, "~> 1.0"}
+      {:ecto_enum, "~> 1.0"},
+
+      # Elastic search integration
+      {:elasticsearch, "~> 0.6.0"},
     ]
   end
 
@@ -153,6 +156,7 @@ defmodule Snitch.Core.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seed/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "ecto.rebuild": ["ecto.drop", "ecto.create --quiet", "ecto.migrate"],
+      "ecto.load.demo": ["run priv/repo/demo/demo.exs"],
       test: ["ecto.create --quiet", "ecto.migrate", "test"],
       "test.multi": [
         "ecto.drop --quiet",

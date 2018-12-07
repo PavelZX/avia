@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "name": {
+          "type": "text"
+        },
+        "description": {
+          "type": "text"
+        },
+        "doctype": {
+          "type": "join",
+          "relations": {
+            "product": "images"
+          }
+        }
+      }
+    }
+  }
+}

@@ -21,6 +21,8 @@ defmodule Snitch.Core.Tools.MultiTenancy.Repo do
   defrepo(:delete, [:arg1], :append)
   defrepo(:delete_all, [:arg1], :append)
   defrepo(:aggregate, [:arg1, :arg2, :arg3], :append)
+  defrepo(:stream, [:arg1], :append)
+  defrepo(:stream, [:arg1, :arg2], :append)
 
   defrepo(:load, [:arg1, :arg2], :pass)
   defrepo(:rollback, [:arg1], :pass)
